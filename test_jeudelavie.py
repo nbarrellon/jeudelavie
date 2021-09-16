@@ -19,4 +19,5 @@ def testMort():
     moteur.nextgen(grille)
     assert grille.get(2,3)==Etat.DEAD
     
-    
+def testMiseAJour():
+    pass
