@@ -10,14 +10,14 @@ from jeudelavie import Grille,Etat,Moteur
 
 def testMort():
     grille=Grille(4,8)
-    grille.set(2,2,Etat.ALIVE)
-    grille.set(2,3,Etat.ALIVE)
-    grille.set(3,2,Etat.ALIVE)
-    grille.set(3,3,Etat.ALIVE)
-    grille.set(2,4,Etat.ALIVE)
+    grille.set_case(2,2,Etat.ALIVE)
+    grille.set_case(2,3,Etat.ALIVE)
+    grille.set_case(3,2,Etat.ALIVE)
+    grille.set_case(3,3,Etat.ALIVE)
+    grille.set_case(2,4,Etat.ALIVE)
     moteur=Moteur()
     moteur.nextgen(grille)
-    assert grille.get(2,3)==Etat.DEAD
+    assert grille.get_case(2,3)==Etat.DEAD
     
 def testMiseAJour():
     pass
