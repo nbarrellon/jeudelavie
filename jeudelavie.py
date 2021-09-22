@@ -52,7 +52,7 @@ class Moteur:
     
     
     def futur_etat(self, nb_voisins: int, etat: Etat) -> Etat:
-        return Etat.DEAD
+        return etat
     
 
     def _futur_etat(self,x, y, grille:Grille, grilleModifiee:Grille):
