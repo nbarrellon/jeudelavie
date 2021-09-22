@@ -38,6 +38,14 @@ def testFuturEtat():
     assert etat_retour == moteur.futur_etat(nb_voisin, etat)
     
  
+def testFuturEtat2():
+    moteur=Moteur()
+    nb_voisin = 2
+    etat = Etat.ALIVE
+    etat_retour = Etat.ALIVE
+    assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+    
+ 
 def testMort():
     grille=Grille(4,8)
     grille.set_case(2,2,Etat.ALIVE)
