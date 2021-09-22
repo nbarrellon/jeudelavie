@@ -51,16 +51,18 @@ class Moteur:
         pass
     
     
-    def futur_etat(self, nb_voisins: int, etat: Etat) -> Etat:
-        return etat
+    def futur_etat(self, nb_voisins: int, etat: Etat) -> Etat:        
+        if nb_voisins == 3:
+            return Etat.ALIVE
+        elif etat==Etat.ALIVE and 1< nb_voisins < 3:
+            return Etat.ALIVE
+        return Etat.DEAD
     
 
     def _futur_etat(self,x, y, grille:Grille, grilleModifiee:Grille):
-        if grille.get_case(x,y)==Etat.ALIVE:
-            if 2 <= grille.nb_voisins(x,y,4) <= 3:
-                grilleModifiee.set_case(x,y,Etat.ALIVE)
-        elif grille.nb_voisins(x,y,4) == 3 :
-            grilleModifiee.set_case(x,y,Etat.ALIVE) 
+        grilleModifiee.set_case(x, y,
+                                self.futur_etat(grille.nb_voisins(x, y, 4),
+                                                grille.get_case(x, y)))
     
     
     def nextgen(self, grille : Grille):
