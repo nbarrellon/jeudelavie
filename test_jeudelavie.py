@@ -6,6 +6,7 @@ Created on Thu Sep 16 16:55:48 2021
 @author: nilsbarrellon
 """
 from jeudelavie import Grille,Etat,Moteur
+import pytest
 
 
 def testTailleGrille():
@@ -108,8 +109,25 @@ def testFuturEtat4plusAlive():
         etat = Etat.ALIVE
         etat_retour = Etat.DEAD
         assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+        
+        
+def testCopieGrille():
+    grille=Grille(4,4)
+    grilleCopie=Grille(4,4)
+    grilleCopie.set_case(2,2,Etat.ALIVE)
     
+    grille.update(grilleCopie)
+    
+    assert grille.get_case(2,2)==Etat.ALIVE
+    
+    
+def testCopieGrille2():
+    grille=Grille(4,4)
+    grilleCopie=Grille(2,2)
+    with pytest.raises(AssertionError):
+        grille.update(grilleCopie)
  
+    
 def testMort():
     grille=Grille(4,8)
     grille.set_case(2,2,Etat.ALIVE)
@@ -120,6 +138,7 @@ def testMort():
     moteur=Moteur()
     moteur.nextgen(grille)
     assert grille.get_case(2,3)==Etat.DEAD
+    
     
 def testMiseAJour():
     pass

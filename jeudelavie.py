@@ -38,9 +38,10 @@ class Grille:
     
     def nb_voisins(self,x,y,borne=8)->int:
         total_voisins = 0
-        for direction in [(-1,-1), (0,-1), (1,-1), (1,0),(1,1),(0,1),(-1,1), (-1,0)]:
+        for direction in [(-1,-1),(0,-1),(1,-1),(1,0),(1,1),(0,1),(-1,1),(-1,0)]:
             if self.voisin(x, y, direction):
                 total_voisins += 1
+                #inutile de tester toutes les cases autour si total_voisins>borne
                 if total_voisins==borne:
                     return total_voisins
         return total_voisins
@@ -58,11 +59,10 @@ class Moteur:
             return Etat.ALIVE
         return Etat.DEAD
     
-
+    #underscore : méthode interne inaccessible à l'exterieur
     def _futur_etat(self,x, y, grille:Grille, grilleModifiee:Grille):
-        grilleModifiee.set_case(x, y,
-                                self.futur_etat(grille.nb_voisins(x, y, 4),
-                                                grille.get_case(x, y)))
+        grilleModifiee.set_case(x, y,self.futur_etat(grille.nb_voisins(x, y, 4),
+                                                     grille.get_case(x, y)))
     
     
     def nextgen(self, grille : Grille):
