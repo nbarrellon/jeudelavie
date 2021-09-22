@@ -5,7 +5,10 @@ Created on Thu Sep 16 17:57:01 2021
 
 @author: nilsbarrellon
 """
-class Etat:
+import enum
+
+
+class Etat(enum.Enum):
     ALIVE = True
     DEAD = False
     
