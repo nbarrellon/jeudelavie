@@ -172,5 +172,39 @@ def testMort2():
     assert grille.get_case(2,3)==Etat.DEAD
     
     
+def testNbVoisins():
+    grille=Grille(4,8)
+    grille.set_case(0,3,Etat.ALIVE)
+    grille.set_case(1,0,Etat.ALIVE)
+    grille.set_case(1,6,Etat.ALIVE)
+    grille.set_case(1,7,Etat.ALIVE)
+    grille.set_case(2,0,Etat.ALIVE)
+    grille.set_case(2,6,Etat.ALIVE)
+    grille.set_case(2,7,Etat.ALIVE)
+    grille.set_case(3,0,Etat.ALIVE)
+    grille.set_case(3,1,Etat.ALIVE)
+    
+    assert grille.nb_voisins(2, 1) == 4, "Le nombre de voisins devrait etre detecte"
+
+
 def testMiseAJour():
-    pass
+    grille=Grille(4,8)
+    grille.set_case(0,3,Etat.ALIVE)
+    grille.set_case(1,0,Etat.ALIVE)
+    grille.set_case(1,6,Etat.ALIVE)
+    grille.set_case(1,7,Etat.ALIVE)
+    grille.set_case(2,0,Etat.ALIVE)
+    grille.set_case(2,6,Etat.ALIVE)
+    grille.set_case(2,7,Etat.ALIVE)
+    grille.set_case(3,0,Etat.ALIVE)
+    grille.set_case(3,1,Etat.ALIVE)
+    moteur=Moteur(grille)
+    moteur.nextgen()
+    assert grille.get_case(0,3)==Etat.DEAD
+    assert grille.get_case(1,0)==Etat.DEAD
+    assert grille.get_case(0,3)==Etat.DEAD
+    assert grille.get_case(2,1)==Etat.ALIVE
+    assert grille.get_case(1,6)==Etat.ALIVE
+    assert grille.get_case(1,7)==Etat.ALIVE
+    assert grille.get_case(2,6)==Etat.ALIVE
+    assert grille.get_case(2,7)==Etat.ALIVE

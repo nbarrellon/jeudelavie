@@ -31,9 +31,9 @@ class Grille:
         delta_x, delta_y = direction
         x_new, y_new = x + delta_x, y + delta_y
         if x_new < 0 or x_new >= self.hauteur or y_new < 0 or y_new >= self.largeur:
-            return Etat.DEAD
+            return False
         else:
-            return self.contenu[x_new][y_new]
+            return self.contenu[x_new][y_new] == Etat.ALIVE
         
     def update(self,grille)->None:
         assert grille.hauteur==self.hauteur and grille.largeur==self.largeur,"Tailles non homogenes"
