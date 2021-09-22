@@ -30,7 +30,7 @@ def testEtatParDefaut():
             assert grille.get_case(i,j)==Etat.DEAD,'Case '+str((i,j))+' dans un mauvais etat'
     
             
-def testFuturEtat():
+def testFuturEtat0Dead():
     moteur=Moteur()
     nb_voisin = 0
     etat = Etat.DEAD
@@ -38,12 +38,76 @@ def testFuturEtat():
     assert etat_retour == moteur.futur_etat(nb_voisin, etat)
     
  
-def testFuturEtat2():
+def testFuturEtat0Alive():
+    moteur=Moteur()
+    nb_voisin = 0
+    etat = Etat.ALIVE
+    etat_retour = Etat.DEAD
+    assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+    
+ 
+def testFuturEtat1Dead():
+    moteur=Moteur()
+    nb_voisin = 1
+    etat = Etat.DEAD
+    etat_retour = Etat.DEAD
+    assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+    
+ 
+def testFuturEtat1Alive():
+    moteur=Moteur()
+    nb_voisin = 1
+    etat = Etat.ALIVE
+    etat_retour = Etat.DEAD
+    assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+    
+ 
+def testFuturEtat2Alive():
     moteur=Moteur()
     nb_voisin = 2
     etat = Etat.ALIVE
     etat_retour = Etat.ALIVE
     assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+    
+ 
+def testFuturEtat2Dead():
+    moteur=Moteur()
+    nb_voisin = 2
+    etat = Etat.DEAD
+    etat_retour = Etat.DEAD
+    assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+    
+ 
+def testFuturEtat3Dead():
+    moteur=Moteur()
+    nb_voisin = 3
+    etat = Etat.DEAD
+    etat_retour = Etat.ALIVE
+    assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+    
+ 
+def testFuturEtat3Alive():
+    moteur=Moteur()
+    nb_voisin = 3
+    etat = Etat.ALIVE
+    etat_retour = Etat.ALIVE
+    assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+    
+ 
+def testFuturEtat4plusDead():
+    moteur=Moteur()
+    for nb_voisin in range(4,9):
+        etat = Etat.DEAD
+        etat_retour = Etat.DEAD
+        assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+    
+ 
+def testFuturEtat4plusAlive():
+    moteur=Moteur()
+    for nb_voisin in range(4,9):
+        etat = Etat.ALIVE
+        etat_retour = Etat.DEAD
+        assert etat_retour == moteur.futur_etat(nb_voisin, etat)
     
  
 def testMort():
