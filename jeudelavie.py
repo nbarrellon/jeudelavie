@@ -72,9 +72,9 @@ class Moteur:
     
     
     def nextgen(self, grille : Grille):
-        tmp=Grille(4,8)
+        tmp=Grille(grille.hauteur,grille.largeur)
         for x in range(grille.hauteur):
             for y in range(grille.largeur):
                 self._futur_etat(x, y, grille, tmp)
-        grille.contenu = tmp.contenu
+        grille.update(tmp)
                 
