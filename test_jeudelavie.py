@@ -22,11 +22,21 @@ def testGetSet():
     assert grille.get_case(2, 2)==Etat.DEAD
     grille=Grille(4,8)
 
+
 def testEtatParDefaut():
     grille=Grille(4,8)
     for i in range(grille.hauteur):
         for j in range(grille.largeur):
             assert grille.get_case(i,j)==Etat.DEAD,'Case '+str((i,j))+' dans un mauvais etat'
+    
+            
+def testFuturEtat():
+    moteur=Moteur()
+    nb_voisin = 0
+    etat = Etat.DEAD
+    etat_retour = Etat.DEAD
+    assert etat_retour == moteur.futur_etat(nb_voisin, etat)
+
     
  
 def testMort():
