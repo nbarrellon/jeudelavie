@@ -5,7 +5,7 @@ Created on Thu Sep 16 17:57:01 2021
 
 @author: nilsbarrellon
 """
-import enum
+import enum, random
 
 
 class Etat(enum.Enum):
@@ -53,6 +53,19 @@ class Grille:
         return total_voisins
     
     
+    def __str__(self) -> str:
+        builder = ""
+        for i in range(self.hauteur):
+            builder += "|"
+            for j in range(self.largeur):
+                if self.get_case(i, j) == Etat.ALIVE:
+                    builder+="*|"
+                else:
+                    builder+=" |"
+            builder+="\n"
+        return builder
+    
+    
 class Moteur:
     def __init__(self, grille: Grille):
         self._grille = grille
@@ -77,4 +90,14 @@ class Moteur:
             for y in range(self._grille.largeur):
                 self._futur_etat(x, y)
         self._grille.update(self._temp)
-                
+
+
+if __name__ == "__main__":
+    grille = Grille(4,8)
+    for i in range(10):
+        grille.set_case(random.randint(0, 3), random.randint(0, 7), Etat.ALIVE)
+    moteur = Moteur(grille)
+    for i in range(10):
+        print(str(grille))
+        moteur.nextgen()
+    print(grille)
