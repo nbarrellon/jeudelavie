@@ -34,6 +34,12 @@ class Grille:
             return Etat.DEAD
         else:
             return self.contenu[x_new][y_new]
+        
+    def update(self,grille)->None:
+        assert grille.hauteur==self.hauteur and grille.largeur==self.largeur,"Tailles non homogenes"
+        for i in range(grille.hauteur):
+            for j in range(grille.largeur):
+                self.set_case(i,j,grille.get_case(i,j))
     
     
     def nb_voisins(self,x,y,borne=8)->int:
