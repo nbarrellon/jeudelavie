@@ -72,10 +72,12 @@ class Moteur:
         self._temp = Grille(grille.hauteur, grille.largeur)
     
     
-    def futur_etat(self, nb_voisins: int, etat: Etat) -> Etat:        
-        if nb_voisins == 3:
-            return Etat.ALIVE
-        elif etat==Etat.ALIVE and 1< nb_voisins < 3:
+    def futur_etat(self, nb_voisins: int, etat: Etat) -> Etat:
+        if etat==Etat.ALIVE:
+            if 1< nb_voisins < 4:
+                return Etat.ALIVE
+            return Etat.DEAD
+        if nb_voisins >= 3:
             return Etat.ALIVE
         return Etat.DEAD
     
@@ -91,8 +93,7 @@ class Moteur:
                 self._futur_etat(x, y)
         self._grille.update(self._temp)
 
-
-if __name__ == "__main__":
+def exemple_alea() -> None:
     grille = Grille(4,8)
     for i in range(10):
         grille.set_case(random.randint(0, 3), random.randint(0, 7), Etat.ALIVE)
@@ -101,3 +102,26 @@ if __name__ == "__main__":
         print(str(grille))
         moteur.nextgen()
     print(grille)
+
+
+def exemple_survie(longueur: int) -> None:
+    grille = Grille(4,8)
+    grille.set_case(0, 7, Etat.ALIVE)
+    grille.set_case(2, 0, Etat.ALIVE)
+    grille.set_case(2, 2, Etat.ALIVE)
+    grille.set_case(2, 5, Etat.ALIVE)
+    grille.set_case(2, 6, Etat.ALIVE)
+    grille.set_case(3, 0, Etat.ALIVE)
+    grille.set_case(3, 1, Etat.ALIVE)
+    grille.set_case(3, 4, Etat.ALIVE)
+    grille.set_case(3, 5, Etat.ALIVE)
+    grille.set_case(3, 7, Etat.ALIVE)
+    moteur = Moteur(grille)
+    for i in range(longueur):
+        print(str(grille))
+        moteur.nextgen()
+    print(grille)
+
+
+if __name__ == "__main__":
+    exemple_survie(20)

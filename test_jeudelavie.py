@@ -117,7 +117,7 @@ def testFuturEtat4plusDead():
     moteur.nextgen()
     for nb_voisin in range(4,9):
         etat = Etat.DEAD
-        etat_retour = Etat.DEAD
+        etat_retour = Etat.ALIVE
         assert etat_retour == moteur.futur_etat(nb_voisin, etat)
     
  
