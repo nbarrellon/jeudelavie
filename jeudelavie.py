@@ -5,13 +5,10 @@ Created on Thu Sep 16 17:57:01 2021
 
 @author: nilsbarrellon
 """
-
 class Etat:
     ALIVE = True
     DEAD = False
     
-    def __init__(self):
-        return
 
 class Grille:
     def __init__(self, hauteur : int, largeur: int):
@@ -50,8 +47,12 @@ class Moteur:
     def __init__(self):
         pass
     
+    
+    def futur_etat(self, nb_voisins: int, etat: Etat) -> Etat:
+        return Etat.DEAD
+    
 
-    def futur_etat(self,x, y, grille:Grille, grilleModifiee:Grille):
+    def _futur_etat(self,x, y, grille:Grille, grilleModifiee:Grille):
         if grille.get_case(x,y)==Etat.ALIVE:
             if 2 <= grille.nb_voisins(x,y,4) <= 3:
                 grilleModifiee.set_case(x,y,Etat.ALIVE)
@@ -63,6 +64,6 @@ class Moteur:
         tmp=Grille(4,8)
         for x in range(grille.hauteur):
             for y in range(grille.largeur):
-                self.futur_etat(x, y, grille, tmp)
+                self._futur_etat(x, y, grille, tmp)
         grille.contenu = tmp.contenu
                 

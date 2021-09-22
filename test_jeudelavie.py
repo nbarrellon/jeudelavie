@@ -36,7 +36,6 @@ def testFuturEtat():
     etat = Etat.DEAD
     etat_retour = Etat.DEAD
     assert etat_retour == moteur.futur_etat(nb_voisin, etat)
-
     
  
 def testMort():
