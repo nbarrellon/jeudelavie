@@ -54,8 +54,9 @@ class Grille:
     
     
 class Moteur:
-    def __init__(self):
-        pass
+    def __init__(self, grille: Grille):
+        self._grille = grille
+        self._temp = Grille(grille.hauteur, grille.largeur)
     
     
     def futur_etat(self, nb_voisins: int, etat: Etat) -> Etat:        
@@ -66,15 +67,14 @@ class Moteur:
         return Etat.DEAD
     
     #underscore : méthode interne inaccessible à l'exterieur
-    def _futur_etat(self,x, y, grille:Grille, grilleModifiee:Grille):
-        grilleModifiee.set_case(x, y,self.futur_etat(grille.nb_voisins(x, y, 4),
-                                                     grille.get_case(x, y)))
+    def _futur_etat(self,x, y):
+        self._temp.set_case(x, y,self.futur_etat(self._grille.nb_voisins(x, y, 4),
+                                                     self._grille.get_case(x, y)))
     
     
-    def nextgen(self, grille : Grille):
-        tmp=Grille(grille.hauteur,grille.largeur)
-        for x in range(grille.hauteur):
-            for y in range(grille.largeur):
-                self._futur_etat(x, y, grille, tmp)
-        grille.update(tmp)
+    def nextgen(self):
+        for x in range(self._grille.hauteur):
+            for y in range(self._grille.largeur):
+                self._futur_etat(x, y)
+        self._grille.update(self._temp)
                 

@@ -32,7 +32,9 @@ def testEtatParDefaut():
     
             
 def testFuturEtat0Dead():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     nb_voisin = 0
     etat = Etat.DEAD
     etat_retour = Etat.DEAD
@@ -40,7 +42,9 @@ def testFuturEtat0Dead():
     
  
 def testFuturEtat0Alive():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     nb_voisin = 0
     etat = Etat.ALIVE
     etat_retour = Etat.DEAD
@@ -48,7 +52,9 @@ def testFuturEtat0Alive():
     
  
 def testFuturEtat1Dead():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     nb_voisin = 1
     etat = Etat.DEAD
     etat_retour = Etat.DEAD
@@ -56,7 +62,9 @@ def testFuturEtat1Dead():
     
  
 def testFuturEtat1Alive():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     nb_voisin = 1
     etat = Etat.ALIVE
     etat_retour = Etat.DEAD
@@ -64,7 +72,9 @@ def testFuturEtat1Alive():
     
  
 def testFuturEtat2Alive():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     nb_voisin = 2
     etat = Etat.ALIVE
     etat_retour = Etat.ALIVE
@@ -72,7 +82,9 @@ def testFuturEtat2Alive():
     
  
 def testFuturEtat2Dead():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     nb_voisin = 2
     etat = Etat.DEAD
     etat_retour = Etat.DEAD
@@ -80,7 +92,9 @@ def testFuturEtat2Dead():
     
  
 def testFuturEtat3Dead():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     nb_voisin = 3
     etat = Etat.DEAD
     etat_retour = Etat.ALIVE
@@ -88,7 +102,9 @@ def testFuturEtat3Dead():
     
  
 def testFuturEtat3Alive():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     nb_voisin = 3
     etat = Etat.ALIVE
     etat_retour = Etat.ALIVE
@@ -96,7 +112,9 @@ def testFuturEtat3Alive():
     
  
 def testFuturEtat4plusDead():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     for nb_voisin in range(4,9):
         etat = Etat.DEAD
         etat_retour = Etat.DEAD
@@ -104,7 +122,9 @@ def testFuturEtat4plusDead():
     
  
 def testFuturEtat4plusAlive():
-    moteur=Moteur()
+    grille=Grille(0,0)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     for nb_voisin in range(4,9):
         etat = Etat.ALIVE
         etat_retour = Etat.DEAD
@@ -135,8 +155,8 @@ def testMort():
     grille.set_case(3,2,Etat.ALIVE)
     grille.set_case(3,3,Etat.ALIVE)
     grille.set_case(2,4,Etat.ALIVE)
-    moteur=Moteur()
-    moteur.nextgen(grille)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     assert grille.get_case(2,3)==Etat.DEAD
     
     
@@ -147,8 +167,8 @@ def testMort2():
     grille.set_case(3,2,Etat.ALIVE)
     grille.set_case(3,3,Etat.ALIVE)
     grille.set_case(2,4,Etat.ALIVE)
-    moteur=Moteur()
-    moteur.nextgen(grille)
+    moteur=Moteur(grille)
+    moteur.nextgen()
     assert grille.get_case(2,3)==Etat.DEAD
     
     
